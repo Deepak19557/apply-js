@@ -3,9 +3,7 @@ class PostsController < ApplicationController
 
 
   def ajax_request
-    # debugger
     @post = Post.new(post_rank: 56).save
-    # Post.last.update(post_rank: 56)
     redirect_to root_path
   end
 
