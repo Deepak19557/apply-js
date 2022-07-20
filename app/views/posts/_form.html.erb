@@ -1,0 +1,46 @@
+<%= form_with(model: post) do |form|%>
+  <% if post.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(post.errors.count, "error") %> prohibited this post from being saved:</h2>
+
+      <ul>
+        <% post.errors.each do |error| %>
+          <li><%= error.full_message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= form.label :post_name %>
+    <%= form.text_field :post_name, value:"hfjhfjf" %>
+  </div>
+
+  <div class="field">
+    <%= form.label :post_rank %>
+    <%= form.number_field :post_rank, id: "myFunction" %>
+  </div>
+
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>
+
+
+<script type="text/javascript">
+
+  $("#myFunction").change(function(){
+  var post_rank =  $("#myFunction").val();
+    if (post_rank < 40) {
+      $.ajax({
+        url: "/posts/ajax_request",
+        method: "post",
+        data: {post_rank: post_rank}
+      })
+    }
+    // else{
+    //   alert( "Handler for .change() called." );
+    // }
+  });
+
+</script>
