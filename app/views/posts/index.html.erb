@@ -26,4 +26,55 @@
 
 <br>
 
-<%= link_to 'New Post', new_post_path %>
+<%= form_with model: Post.new ,id:"form",local: true do |form|%>
+
+  <div class="field">
+    <%= form.label :post_name %>
+    <%= form.text_field :post_name %>
+  </div>
+
+  <div class="field">
+    <%= form.label :post_rank %>
+    <%= form.number_field :post_rank, id: "myFunction" %>
+  </div>
+
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>
+
+<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
+  Launch demo modal
+</button>
+<div id="modal-popup">
+  <%= render "modal",post: @post%>
+</div>
+<script>
+  $("#myFunction").change(function(){
+  var post_rank =  $("#myFunction").val();
+    if (post_rank < 40) {
+      $.ajax({
+        url: "/posts/ajax_request",
+        method: "post",
+        data: {post_rank: post_rank}
+      })
+    }
+    
+  });
+
+  $("#form").submit(function(event){
+    event.preventDefault();
+    form = $(this)
+    $.ajax({
+      type: "post",
+      url: "/posts",
+      data: form.serialize(),
+      success: function(data){
+        $("#modal-popup").html(data);
+        $( ".btn-primary" ).click();
+        form[0].reset();
+        form.find(':input[type=submit]').prop('disabled', false);
+      }
+    })
+  });
+</script>

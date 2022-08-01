@@ -1,0 +1,19 @@
+current directory: /home/lenovo/Desktop/apply-js/vendor/bundle/ruby/2.5.0/gems/byebug-11.1.3/ext/byebug
+/home/lenovo/.rvm/rubies/ruby-2.5.5/bin/ruby -I /home/lenovo/.rvm/rubies/ruby-2.5.5/lib/ruby/site_ruby/2.5.0 -r ./siteconf20220729-141070-1fbsflv.rb extconf.rb
+creating Makefile
+
+current directory: /home/lenovo/Desktop/apply-js/vendor/bundle/ruby/2.5.0/gems/byebug-11.1.3/ext/byebug
+make "DESTDIR=" clean
+
+current directory: /home/lenovo/Desktop/apply-js/vendor/bundle/ruby/2.5.0/gems/byebug-11.1.3/ext/byebug
+make "DESTDIR="
+compiling breakpoint.c
+compiling byebug.c
+compiling context.c
+compiling locker.c
+compiling threads.c
+linking shared-object byebug/byebug.so
+
+current directory: /home/lenovo/Desktop/apply-js/vendor/bundle/ruby/2.5.0/gems/byebug-11.1.3/ext/byebug
+make "DESTDIR=" install
+/usr/bin/install -m 0755 byebug.so ./.gem.20220729-141070-2rsr6p/byebug

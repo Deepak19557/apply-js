@@ -2,14 +2,15 @@ class PostsController < ApplicationController
   before_action :set_post, only: %i[ show edit update destroy ]
 
 
-  def ajax_request
-    @post = Post.new(post_rank: 56).save
-    redirect_to root_path
-  end
+  # def ajax_request
+  #   @post = Post.new(post_rank: 56).save
+  #   redirect_to root_path
+  # end
 
   # GET /posts or /posts.json
   def index
     @posts = Post.all
+    @post = Post.new
   end
 
   # GET /posts/1 or /posts/1.json
@@ -27,16 +28,9 @@ class PostsController < ApplicationController
 
   # POST /posts or /posts.json
   def create
-    @post = Post.new(post_params)
-
-    respond_to do |format|
-      if @post.save
-        format.html { redirect_to post_url(@post), notice: "Post was successfully created." }
-        format.json { render :show, status: :created, location: @post }
-      else
-        format.html { render :new, status: :unprocessable_entity }
-        format.json { render json: @post.errors, status: :unprocessable_entity }
-      end
+    @post = Post.create(post_params)
+    if request.xhr?
+      render(template: "posts/_modal",layout:false,locals:{post: @post})
     end
   end
 
@@ -74,3 +68,6 @@ class PostsController < ApplicationController
       params.require(:post).permit(:post_name, :post_rank)
     end
 end
+
+
+

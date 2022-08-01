@@ -1,4 +1,4 @@
-<%= form_with(model: post) do |form|%>
+<%= form_with(model: post),id:"form"do |form|%>
   <% if post.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(post.errors.count, "error") %> prohibited this post from being saved:</h2>
@@ -13,7 +13,7 @@
 
   <div class="field">
     <%= form.label :post_name %>
-    <%= form.text_field :post_name, value:"hfjhfjf" %>
+    <%= form.text_field :post_name %>
   </div>
 
   <div class="field">
@@ -41,6 +41,17 @@
     // else{
     //   alert( "Handler for .change() called." );
     // }
+  });
+
+  $("#form").submit(function(event){
+    event.preventDefault();
+    $.ajax({
+      type: "post",
+      url: "/posts",
+      success.function(data){
+
+      }
+    })
   });
 
 </script>
